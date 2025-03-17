@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'ntsama-mvondo_flask-app/:latest'
+    }
+
+    stages {
+        stage('Clonage') {
+            steps {
+                // Cloner le dépôt GitHub
+                git url: 'https://github.com/votre_utilisateur/votre_depot.git', branch: 'main'
+            }
+        }
+
+        stage('Image') {
+            steps {
+                // Construire l'image Docker
+                script {
+                    // Assurez-vous que Docker est en cours d'exécution
+                    sh 'docker build -t $DOCKER_IMAGE .'
+                }
+            }
+        }
+
+        stage('Publication') {
+            steps {
+                // Se connecter à Docker Hub et publier l'image
+                script {
+                    // Se connecter à Docker Hub
+                    sh 'echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin'
+
+                    // Pousser l'image vers Docker Hub
+                    sh "docker push $DOCKER_IMAGE"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline terminé avec succès !'
+        }
+        failure {
+            echo 'Le pipeline a échoué.'
+        }
+    }
+}
