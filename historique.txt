@@ -1,0 +1,24 @@
+
+pour construire notre image docker nous avons 
+executer la commande suivante :
+-docker build --no-cache -t ntsama-mvondo_flask-app .
+
+pour le pusher sur notre espace dockerHub nous avons utiliser la commande :
+-nous somme connecter avec ~ docker login -u isabelle130 
+puis configurer l'acces au dockerhub 
+ensuite on a executer 
+- docker tag ntsama-mvondo_flask-app:latest isabelle130/ntsama-mvondo_flask-app:latest
+- docker push isabelle130/ntsama-mvondo_flask-app:latest
+
+pour Envoyer mon espace L'ensemble de mon espace de travail sur  mon depot github (https://github.com/Isabelle6MVONDO9/projet_docker.git)
+voila l'ensemble des commande  exercuter 
+-git init 
+-git add .
+-git commit -m "Premier commit - ajout du projet"
+-git remote add origin https://github.com/Isabelle6MVONDO9/projet_docker.git
+-git branch -M main
+-git push -u origin main
+
+Le lien du depot github est : https://github.com/Isabelle6MVONDO9/projet_docker.git
+
+Le lien de mon application est : https://hub.docker.com/u/isabelle130
