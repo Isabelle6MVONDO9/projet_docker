@@ -6,9 +6,17 @@ pipeline {
           DOCKER_HUB_USERNAME = credentials('isabelle130')
           DOCKER_HUB_PASSWORD = credentials('mvon75*1811E')
     }
+     
 
     stages {
+
         stage('Clonage') {
+            steps {
+                script {
+                    // Installe Git si nécessaire (Ubuntu/Debian)
+                    sh 'sudo apt-get update && sudo apt-get install -y git'
+                }
+            }
             steps {
                 // Cloner le dépôt GitHub
                 git url: 'https://github.com/Isabelle6MVONDO9/projet_docker.git', branch: 'main'
