@@ -2,14 +2,16 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'ntsama-mvondo_flask-app/:latest'
+          DOCKER_IMAGE = 'ntsama-mvondo_flask-app/:latest'
+          DOCKER_HUB_USERNAME = credentials('isabelle130')
+          DOCKER_HUB_PASSWORD = credentials('mvon75*1811E')
     }
 
     stages {
         stage('Clonage') {
             steps {
                 // Cloner le dépôt GitHub
-                git url: 'https://github.com/votre_utilisateur/votre_depot.git', branch: 'main'
+                git url: 'https://github.com/Isabelle6MVONDO9/projet_docker.git', branch: 'main'
             }
         }
 
